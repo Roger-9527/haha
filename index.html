@@ -1,28 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Welcome</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>猜拳遊戲</title>
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+body {
+  font-family: "微軟正黑體", sans-serif;
+  text-align: center;
+  background: #e0e0e0;
+  padding: 50px;
 }
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
+h2 {
+  margin-bottom: 25px;
+}
+button {
+font-size: 18px;
+margin: 8px;
+padding: 10px 25px;
+border: none;
+border-radius: 6px;
+background: #4a90e2;
+color: #fff;
+cursor: pointer;
+}
+button:hover {
+background: #357abd;
+}
+#outcome {
+margin-top: 35px;
+font-size: 22px;
+font-weight: 600;
 }
 </style>
 </head>
 <body>
-<iframe 
-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" 
-allow="autoplay; encrypted-media" 
-allowfullscreen>
-</iframe>
+<h2>猜拳，來吧！</h2>
+<button onclick="go('石')">石頭</button>
+<button onclick="go('剪')">剪刀</button>
+<button onclick="go('布')">布</button>
+<div id="outcome"></div>
+<script>
+function go(a) {
+const choices = ['石', '剪', '布'];
+const comp = choices[Math.floor(Math.random() * 3)];
+let msg = `你選的是 ${a}，電腦出的是 ${comp}。`;
+if (a === comp) {
+    msg += '平手';
+  } else if (
+  (a === '石' && comp === '剪') ||
+  (a === '剪' && comp === '布') ||
+  (a === '布' && comp === '石')
+  ) 
+{
+msg += ' 你贏了！';
+} 
+else {
+msg += ' 電腦贏了！';
+}
+document.getElementById('outcome').textContent = msg;
+}
+</script>
 </body>
 </html>
